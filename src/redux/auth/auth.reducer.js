@@ -36,6 +36,18 @@ export const registerThunk = createAsyncThunk(
     }
   }
 );
+export const logOutThunk = createAsyncThunk(
+  'auth/logOut',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await instance.post('/users/logout');
+
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.message);
+    }
+  }
+);
 
 export const refreshThunk = createAsyncThunk(
   'auth/refresh',
@@ -70,11 +82,8 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  // Ім'я слайсу
   name: 'auth',
-  // Початковий стан редюсера слайсу
   initialState,
-  // Об'єкт редюсерів
   reducers: {},
   extraReducers: builder =>
     builder
@@ -89,6 +98,9 @@ const authSlice = createSlice({
         state.authenticated = true;
         state.token = payload.token;
         state.userData = payload.user;
+      })
+      .addCase(logOutThunk.fulfilled, () => {
+       return initialState;
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -120,5 +132,4 @@ const authSlice = createSlice({
       ),
 });
 
-// Редюсер слайсу
 export const authReducer = authSlice.reducer;

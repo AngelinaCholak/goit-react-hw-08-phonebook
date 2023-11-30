@@ -58,6 +58,7 @@
   transition: background-color 0.3s;
   text-align: center; 
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 .SearchFormButtonLabel {
      margin-right: 8px;
