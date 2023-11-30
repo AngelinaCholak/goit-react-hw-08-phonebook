@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    border-radius: 0;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 20px;
+    border-radius: 5px;
+  }
+}
+@media (min-width: 1025px) {
+  .container {
+    padding: 30px;
+    border-radius: 8px;
+  }
+}
+
