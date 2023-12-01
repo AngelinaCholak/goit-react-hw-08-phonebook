@@ -9,6 +9,7 @@ import { Loader } from 'components/Loader/Loader';
 export const PhoneBook = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  // console.log(contacts);
   const [isLoading, setIsLoading] = useState(false); 
 
   const [name, setName] = useState('');
