@@ -2,54 +2,43 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './PhoneBook.module.css';
 import { GoPersonAdd } from 'react-icons/go';
-import { selectContacts } from 'redux/contact/selectors';
 import { addContact } from 'redux/contact/contact.actions';
 import { Loader } from 'components/Loader/Loader';
+import { selectContactsIsLoading } from 'redux/contact/selectors'; 
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  // console.log(contacts);
-  const [isLoading, setIsLoading] = useState(false); 
+  const isLoading = useSelector(selectContactsIsLoading);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    }
+  const handleNameChange = event => {
+    setName(event.target.value);
   };
 
-const handleSubmit = event => {
-  event.preventDefault();
-  setIsLoading(true);
-  const hasDuplicates =
-    Array.isArray(contacts) &&
-    contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
+  const handleNumberChange = event => {
+    setNumber(event.target.value);
+  };
 
-  if (hasDuplicates) {
-    alert(`Oops, contact with name '${name}' already exists!`);
-    setIsLoading(false); 
-    return;
-  }
+  const onAddContact = event => {
+    event.preventDefault();
 
-  dispatch(addContact({ name, phone: number }))
-    .then(() => {
-      setIsLoading(false); 
-      setName('');
-      setNumber('');
-    })
-    .catch(error => {
-      setIsLoading(false);
-      console.error('Error adding contact:', error);
-    });
-};
+    const formData = {
+      name,
+      number,
+    };
+
+    dispatch(addContact(formData))
+      .unwrap()
+      .then(() => {
+        setName('');
+        setNumber('');
+      });
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onAddContact}>
       {isLoading && <Loader />}
       <h1 className={css.phoneTitle}>Phonebook</h1>
       <div className={css.inputContainer}>
@@ -57,10 +46,10 @@ const handleSubmit = event => {
         <input
           className={css.phoneBookInput}
           type="text"
-          name="name"
+          name="contactName"
           required
           value={name}
-          onChange={handleInputChange}
+          onChange={handleNameChange}
           placeholder="name"
         />
       </div>
@@ -69,10 +58,10 @@ const handleSubmit = event => {
         <input
           className={css.phoneBookInput}
           type="tel"
-          name="number"
+          name="contactNumber"
           required
           value={number}
-          onChange={handleInputChange}
+          onChange={handleNumberChange}
           placeholder="number"
         />
       </div>
