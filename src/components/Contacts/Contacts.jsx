@@ -6,16 +6,18 @@ import {
   selectContacts,
   selectContactsError,
   selectContactsIsLoading,
+  selectFilter,
 } from 'redux/contact/selectors';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { Loader } from 'components/Loader/Loader';
-import { deleteContact, fetchContact } from 'redux/contact/contact.actions'; 
+import { deleteContact, fetchContact } from 'redux/contact/contact.actions';
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
+  const filter = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchContact());
@@ -24,9 +26,11 @@ const Contacts = () => {
   const onDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
-  
-
-  const showContacts = () => Array.isArray(contacts) && contacts.length > 0;
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+  const showContacts = () =>
+    Array.isArray(filteredContacts) && filteredContacts.length > 0;
   return (
     <div>
       <h2 className={css.contactTitle}>Contacts</h2>
@@ -34,7 +38,7 @@ const Contacts = () => {
       {isLoading && <Loader />}
       <ul className={css.contactsList}>
         {showContacts() &&
-          contacts.map(({ id, name, number }) => {
+          filteredContacts.map(({ id, name, number }) => {
             return (
               <li className={css.contactsLi} key={id}>
                 <div className={css.container}>

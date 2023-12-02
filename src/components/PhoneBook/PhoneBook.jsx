@@ -4,12 +4,13 @@ import css from './PhoneBook.module.css';
 import { GoPersonAdd } from 'react-icons/go';
 import { addContact, fetchContact } from 'redux/contact/contact.actions';
 import { Loader } from 'components/Loader/Loader';
-import {  selectContactsIsLoading } from 'redux/contact/selectors'; 
+import { selectContactsIsLoading } from 'redux/contact/selectors'; 
+
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectContactsIsLoading);
-
+  
   useEffect(() => {
     dispatch(fetchContact());
   }, [dispatch]);

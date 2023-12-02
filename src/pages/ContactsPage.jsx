@@ -3,14 +3,12 @@ import Contacts from 'components/Contacts/Contacts';
 import Filter from 'components/Filter/Filter';
 import PhoneBook from 'components/PhoneBook/PhoneBook';
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContact } from 'redux/contact/contact.actions';
-import { selectFilter } from 'redux/contact/selectors';
 import css from '../pages/ContactsPages.module.css';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchContact());
@@ -19,7 +17,7 @@ const ContactsPage = () => {
     <div className={css.container}>
       <PhoneBook />
       <Filter />
-      {contacts.length > 0 && <Contacts />}
+     <Contacts />
     </div>
   );
 };
