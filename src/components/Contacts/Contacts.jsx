@@ -21,23 +21,21 @@ const Contacts = () => {
     dispatch(fetchContact());
   }, [dispatch]);
 
-
   const onDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
+  
 
-  const showContacts = Array.isArray(contacts) && contacts.length > 0;
+  const showContacts = () => Array.isArray(contacts) && contacts.length > 0;
   return (
     <div>
       <h2 className={css.contactTitle}>Contacts</h2>
       {error !== null && <p className="error-bage">{error}</p>}
       {isLoading && <Loader />}
       <ul className={css.contactsList}>
-        {showContacts &&
-          contacts.map(
-            (
-              { id, name, number } 
-            ) => (
+        {showContacts() &&
+          contacts.map(({ id, name, number }) => {
+            return (
               <li className={css.contactsLi} key={id}>
                 <div className={css.container}>
                   <span>
@@ -51,8 +49,8 @@ const Contacts = () => {
                   </button>
                 </div>
               </li>
-            )
-          )}
+            );
+          })}
       </ul>
     </div>
   );

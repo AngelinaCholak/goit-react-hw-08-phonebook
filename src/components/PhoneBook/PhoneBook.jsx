@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './PhoneBook.module.css';
 import { GoPersonAdd } from 'react-icons/go';
-import { addContact } from 'redux/contact/contact.actions';
+import { addContact, fetchContact } from 'redux/contact/contact.actions';
 import { Loader } from 'components/Loader/Loader';
-import { selectContactsIsLoading } from 'redux/contact/selectors'; 
+import {  selectContactsIsLoading } from 'redux/contact/selectors'; 
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectContactsIsLoading);
 
+  useEffect(() => {
+    dispatch(fetchContact());
+  }, [dispatch]);
+
   const onAddContact = event => {
     event.preventDefault();
-     const name = event.currentTarget.elements.contactName.value;
-     const number = event.currentTarget.elements.contactNumber.value;
+    const name = event.currentTarget.elements.contactName.value;
+    const number = event.currentTarget.elements.contactNumber.value;
 
     const formData = {
       name,
