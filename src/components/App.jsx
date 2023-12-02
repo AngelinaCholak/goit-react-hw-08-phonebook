@@ -1,16 +1,16 @@
 
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from 'pages/Home';
-import ContactsPage from 'pages/ContactsPage';
 import { RegisterContact } from 'pages/RegisterContact';
-import LoginContact from 'pages/LoginContact';
 import { Layoyt } from './Layoyt/Layoyt';
 import { useDispatch } from 'react-redux';
 import { refreshThunk } from 'redux/auth/auth.reducer';
 import * as ROUTES from 'constans/routes.js';
 import RestrictedRoute from '../components/RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
+import ContactsPage from 'pages/ContactsPage/ContactsPage';
+import { Home } from 'pages/Home/Home';
+import LoginContact from 'pages/LoginContact/LoginContact';
 
 
 const appRoutes = [

@@ -31,35 +31,37 @@ export const PhoneBook = () => {
   };
 
   return (
-    <form onSubmit={onAddContact}>
+    <div>
       {isLoading && <Loader />}
-      <h1 className={css.phoneTitle}>Phonebook</h1>
-      <div className={css.inputContainer}>
-        <h2 className={css.inputTitle}>Name</h2>
-        <input
-          className={css.phoneBookInput}
-          type="text"
-          name="contactName"
-          required
-          placeholder="name"
-        />
-      </div>
-      <div className={css.inputContainer}>
-        <h2 className={css.inputTitle}>Number</h2>
-        <input
-          className={css.phoneBookInput}
-          type="tel"
-          name="contactNumber"
-          required
-          placeholder="number"
-        />
-      </div>
-      <br />
-      <button type="submit" className={css.phoneBookButton}>
-        <GoPersonAdd className={css.SearchFormButtonLabel} size={20} />
-        Add contact
-      </button>
-    </form>
+      <form onSubmit={onAddContact}>
+        <h1 className={css.phoneTitle}>Phonebook</h1>
+        <div className={css.inputContainer}>
+          <h2 className={css.inputTitle}>Name</h2>
+          <input
+            className={css.phoneBookInput}
+            type="text"
+            name="contactName"
+            required
+            placeholder="name"
+          />
+        </div>
+        <div className={css.inputContainer}>
+          <h2 className={css.inputTitle}>Number</h2>
+          <input
+            className={css.phoneBookInput}
+            type="tel"
+            name="contactNumber"
+            required
+            placeholder="number"
+          />
+        </div>
+        <br />
+        <button type="submit" className={css.phoneBookButton}>
+          <GoPersonAdd className={css.SearchFormButtonLabel} size={20} />
+          Add contact
+        </button>
+      </form>
+    </div>
   );
 };
 export default PhoneBook;

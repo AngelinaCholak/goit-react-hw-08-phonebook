@@ -49,7 +49,7 @@ const contactsSlice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchContact.rejected,
-          addContact.pending,
+          addContact.rejected,
           deleteContact.rejected
         ),
         (state, { payload }) => {

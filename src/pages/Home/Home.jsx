@@ -1,5 +1,5 @@
 import React from 'react'
-import css from '../pages/Home.module.css';
+import css from '../Home/Home.module.css';
 // import imageSrc  from '../components/img/HomeImg';
 export const Home = () => {
   return (

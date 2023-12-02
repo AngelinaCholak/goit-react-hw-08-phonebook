@@ -2,7 +2,7 @@ import { Loader } from 'components/Loader/Loader';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { registerThunk } from 'redux/auth/auth.reducer';
-import css from '../pages/LoginContact.module.css';
+import css from '../pages/LoginContact/LoginContact.module.css';
 
 export const RegisterContact = () => {
   const dispatch = useDispatch();
