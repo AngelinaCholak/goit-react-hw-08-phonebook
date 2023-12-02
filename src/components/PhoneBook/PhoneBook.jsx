@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './PhoneBook.module.css';
 import { GoPersonAdd } from 'react-icons/go';
@@ -10,19 +10,10 @@ export const PhoneBook = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectContactsIsLoading);
 
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
-  const handleNameChange = event => {
-    setName(event.target.value);
-  };
-
-  const handleNumberChange = event => {
-    setNumber(event.target.value);
-  };
-
   const onAddContact = event => {
     event.preventDefault();
+     const name = event.currentTarget.elements.contactName.value;
+     const number = event.currentTarget.elements.contactNumber.value;
 
     const formData = {
       name,
@@ -45,8 +36,6 @@ export const PhoneBook = () => {
           type="text"
           name="contactName"
           required
-          value={name}
-          onChange={handleNameChange}
           placeholder="name"
         />
       </div>
@@ -57,8 +46,6 @@ export const PhoneBook = () => {
           type="tel"
           name="contactNumber"
           required
-          value={number}
-          onChange={handleNumberChange}
           placeholder="number"
         />
       </div>

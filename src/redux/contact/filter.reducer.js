@@ -1,23 +1,4 @@
 
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   filterValue: '',
-// };
-
-// const filterSlice = createSlice({
-//   name: 'filter',
-//   initialState,
-//   reducers: {
-//     setFilterValue: (state, action) => {
-//       state.filterValue = action.payload;
-//     },
-//   },
-// });
-
-// export const { setFilterValue } = filterSlice.actions;
-// export const filterReducer = filterSlice.reducer;
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const filterSlice = createSlice({
@@ -32,3 +13,14 @@ const filterSlice = createSlice({
 
 export const filterReducer = filterSlice.reducer;
 export const { setFilter } = filterSlice.actions; 
+
+// export const selectVisibleContacts = createSelector(
+//   [selectContacts, selectFilter],
+//   (contacts, filter) => {
+//     return contacts.filter(
+//       contact =>
+//         contact.name.toLowerCase().includes(filter.toLowerCase().trim()) ||
+//         contact.phone.toLowerCase().includes(filter.toLowerCase().trim())
+//     );
+//   }
+// );
