@@ -21,6 +21,7 @@ const Contacts = () => {
     dispatch(fetchContact());
   }, [dispatch]);
 
+
   const onDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };

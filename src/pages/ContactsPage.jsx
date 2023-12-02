@@ -5,12 +5,12 @@ import PhoneBook from 'components/PhoneBook/PhoneBook';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContact } from 'redux/contact/contact.actions';
-import { selectVisibleContacts } from 'redux/contact/selectors';
+import { selectFilter } from 'redux/contact/selectors';
 import css from '../pages/ContactsPages.module.css';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectVisibleContacts);
+  const contacts = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchContact());

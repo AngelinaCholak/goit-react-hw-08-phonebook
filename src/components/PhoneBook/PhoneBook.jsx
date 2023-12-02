@@ -31,10 +31,7 @@ export const PhoneBook = () => {
 
     dispatch(addContact(formData))
       .unwrap()
-      .then(() => {
-        setName('');
-        setNumber('');
-      });
+      .then(() => event.target.reset());
   };
 
   return (
