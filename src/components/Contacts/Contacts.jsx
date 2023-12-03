@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import css from './contacts.module.css';
@@ -10,7 +10,7 @@ import {
 } from 'redux/contact/selectors';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { Loader } from 'components/Loader/Loader';
-import { deleteContact, fetchContact } from 'redux/contact/contact.actions';
+import { deleteContact } from 'redux/contact/contact.actions';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,6 @@ const Contacts = () => {
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
   const filter = useSelector(selectFilter);
-
-  useEffect(() => {
-    dispatch(fetchContact());
-  }, [dispatch]);
 
   const onDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
